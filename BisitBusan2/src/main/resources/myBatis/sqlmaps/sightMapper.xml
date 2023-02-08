@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Sight">  
+    
+    <!-- 명소 인기순위 -->
+   <select id="SightList" resultType="com.green.sight.vo.SightVo">
+		SELECT S_NAME, S_CODE,(NVL(S_GOOD,0))as S_GOOD 
+		FROM(
+			SELECT S_NAME, S_CODE, (NVL(S_GOOD,0))as S_GOOD
+			FROM SIGHT
+			ORDER BY S_GOOD DESC NULLS LAST
+			)
+		<![CDATA[WHERE ROWNUM <= 3]]> 
+    </select>
+    
+    <!-- 명소 인기순위 -->
+    <select id="SightList2" resultType="com.green.sight.vo.SightVo">
+		SELECT LAST.*
+		FROM (
+			SELECT ROWNUM RNUM, TEMP.*
+			FROM (
+    			SELECT S_NAME,S_CODE,(NVL(S_GOOD,0))AS S_GOOD
+    			FROM SIGHT
+    			ORDER BY S_GOOD DESC NULLS LAST
+    			) TEMP
+			)LAST
+		WHERE RNUM BETWEEN 4 AND 6
+    </select>
+    
+    
+     <select id="SightView" resultType="com.green.sight.vo.SightVo">
+	     
+	    	SELECT *
+			FROM SIGHT
+			WHERE S_LONGITUDE=#{tloc_Lng}		
+	
+    </select>
+    
+	
+<!-- 명소전체 페이지 -->
+	<select id="listPage" resultType="com.green.sight.vo.SightVo">
+	<![CDATA[
+		select *
+		from (
+		    select row_number()over (order by s_code) num , A.*
+		    from sight A
+		    order by s_code
+		)
+		where num > ((#{page}-1) * #{perPageNum}) and num <= #{page} * #{perPageNum}
+		]]>
+ 	</select>   
+	
+	<!-- 명소 전체 갯수(페이징처리시 필요) -->
+	<select id="gettotalcount" resultType="int">
+		SELECT COUNT(S_CODE) FROM SIGHT
+	</select> 
+    
+
+    <!-- 명소 상세 보기 -->
+	<select id="SightInfoList" resultType="com.green.sight.vo.SightVo">
+		
+		SELECT *
+	  	FROM SIGHT
+	 	WHERE S_CODE  =  #{s_code}
+	 	
+    </select>
+    
+    <update id="SightReadCntUpdate">
+		UPDATE SIGHT
+		SET S_GOOD =S_GOOD+1
+		WHERE S_CODE = #{S_CODE}
+    </update>
+    
+ 
+
+    
+   
+    
+   
+
+</mapper>   
+

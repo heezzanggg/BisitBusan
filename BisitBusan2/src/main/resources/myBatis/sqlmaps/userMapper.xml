@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">  
+   
+   <insert id="UserInsert">
+      INSERT INTO TUSER ( USER_ID, USER_PW, USER_NAME  )
+       VALUES ( #{user_id}, #{user_pw}, #{user_name} )
+    </insert>
+    
+    
+    <select id="login"  resultType="com.green.user.vo.UserVo">
+     SELECT USER_ID, USER_PW
+      FROM  TUSER
+      WHERE USER_ID = #{user_id} 
+     AND USER_PW = #{user_pw}
+     
+    </select>
+   
+   
+</mapper>   
+
+
+
+
+
+
+

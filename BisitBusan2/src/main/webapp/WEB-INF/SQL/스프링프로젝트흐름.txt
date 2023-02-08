@@ -1,0 +1,30 @@
+스프링 프로그램 흐름
+0) chrome : http://localhost:8080   (/)
+1) Controller              : @Controller
+2) -> Service Interface  
+3)   -> Service Implement : @Service
+4) -> Dao  Interface
+5)   -> Dao  Implement    : @Repository
+6)      -> SqlSession   
+7)        -> Mapper.xml
+8)        -> oracle 조회
+9)          결과 return => 5) => 3) => 1)
+
+@Component  종류     
+클래스 .java
+@Controller
+HomeController
+
+@Service()
+UserServiceImpl
+
+@Repository()
+UserDaoImpl
+
+
+
+
+
+
+  
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Festival">  
+
+  	<!-- 명소전체보기 -->
+<!--    <select id="FesivalTable" resultType="com.green.festival.vo.FestivalVo">
+		SELECT S_NAME
+		FROM SIGHT
+		ORDER BY S_NAME ASC
+		SELECT LAST.*
+FROM(
+    SELECT  ROWNUM RNUM, TEMP.*
+    FROM (
+        SELECT F_NAME,F_CODE
+        FROM FESTIVAL
+        ORDER BY F_NAME ASC
+    ) TEMP
+)LAST
+ORDER BY RNUM ASC
+    </select> -->
+    
+      	<!-- 페이징 처리 한 축제 전체보기 -->
+   <select id="FesivalTable" resultType="com.green.festival.vo.FestivalVo">
+	<![CDATA[
+		select *
+		from (
+		    select row_number()over (order by f_code) num , A.*
+		    from festival A
+		    order by f_code
+		)
+		where num > ((#{page}-1) * #{perPageNum}) and num <= #{page} * #{perPageNum}
+		]]>
+    </select>
+    
+    <!-- 축제 전체 갯수(페이징처리시 필요) -->
+	<select id="gettotalcount" resultType="int">
+		SELECT COUNT(F_CODE) FROM FESTIVAL
+	</select> 
+    
+
+   <select id="FestivalInfoList" resultType="com.green.festival.vo.FestivalVo">
+		
+		SELECT *
+	  	FROM FESTIVAL
+	 	WHERE F_CODE  =  #{f_code}
+	 	
+    </select>
+    
+      <select id="FestivalView" resultType="com.green.festival.vo.FestivalVo">
+	     
+	    	SELECT *
+			FROM FESTIVAL
+			WHERE F_LONGITUDE=#{sloc_Lng}		
+		  
+	
+    </select>
+    
+</mapper>   

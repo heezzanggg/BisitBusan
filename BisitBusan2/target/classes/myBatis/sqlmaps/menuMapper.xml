@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Menu">
+  
+    <select id="MenuList"
+      resultType="com.green.menus.vo.MenuVo">
+      SELECT     MENU_ID,  MENU_NAME,  MENU_SEQ
+       FROM      MENUS
+       ORDER BY  MENU_SEQ  ASC
+    </select>
+    
+
+    
+
+    
+    <select  id="MenuView"
+       resultType="com.green.menus.vo.MenuVo" >
+      SELECT  MENU_ID, MENU_NAME, MENU_SEQ
+       FROM   MENUS
+       WHERE  MENU_ID  = #{menu_id}    
+    </select>
+    
+
+         
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

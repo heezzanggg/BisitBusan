@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Image">  
+    
+    <select id="ImageList" resultType="com.green.image.vo.ImageVo">
+	  
+		SELECT S_NAME,S_GOOD,I_ADDRESS
+		FROM 
+		(
+			SELECT S_NAME,S_GOOD,I_ADDRESS
+			FROM SIGHT S INNER JOIN IMAGE I
+			ON S.S_CODE = I.SIG_SCODE
+			ORDER BY S_GOOD DESC NULLS LAST
+		)
+	    <![CDATA[WHERE ROWNUM <= 3]]> 
+	    
+    </select>
+
+    
+
+</mapper>   
+
