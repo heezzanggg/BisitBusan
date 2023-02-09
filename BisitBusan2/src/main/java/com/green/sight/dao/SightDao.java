@@ -11,7 +11,9 @@ public interface SightDao {
 
 	List<SightVo> getSightList();
 	
-	List<SightVo> getSightList2();
+//	List<SightVo> getSightList1();
+//	
+//	List<SightVo> getSightList2();
 	
 	List<SightVo> getSightView(String tloc_Lng);
 

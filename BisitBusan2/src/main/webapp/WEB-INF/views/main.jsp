@@ -7,6 +7,8 @@
 <head>
  <%@include file="/WEB-INF/include/menus02.jsp" %>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <title>BUSAN VISIT</title>
 <style>
 #appi{
@@ -42,38 +44,24 @@ thead{padding : 70px;}
 
 </head>
 <body>
-
- <form id="aform">
 	<div class ="form1">
 	  <h1 align="left">부산 인기 여행지 TOP6</h1>
- 		 <table class ="popsight">
-			<tr>
+		<div class="grid text center">
+			<div class="row">
 				<c:forEach var="sight" items="${ sightList }">
-					<td>
+					<div class = "col-lg-4 col-md-6" >
 						<a href="/Info?s_code=${sight.s_code}">
-						<!--  <a href="/Board/List?menu_id=${ board.menu_id }" class="btn btn-primary">목록으로</a>-->
 							<img src ="fileupload/sight/${sight.s_name}.jpg" alt="${sight.s_name}" width="350" height="300">
 						</a>
 						<br>
-						<a href="/Info?s_code=${sight.s_code}">${ sight.s_name }</a>
-					</td>
+					    <a href="/Info?s_code=${sight.s_code}">${ sight.s_name }</a>
+					</div>
 				</c:forEach>
-			</tr>
-			<tr>
-				<c:forEach var="sight2" items="${ sightList2 }">
-					<td>
-						<a href="/Info?s_code=${sight2.s_code}">
-						<!--  <a href="/Board/List?menu_id=${ board.menu_id }" class="btn btn-primary">목록으로</a>-->
-							<img src ="fileupload/sight/${sight2.s_name}.jpg" alt="${sight2.s_name}" width="350" height="300">
-						</a>
-						<br>
-						<a href="/Info?s_code=${sight2.s_code}">${ sight2.s_name }</a>
-					</td>
-				</c:forEach>
-			</tr>
-		</table> 
+			</div>	
+		</div>
 	  <hr>
-	</div>
+	</div> <!--end form1 -->
+ <form id="aform">
 
   <div class = "form2">	 
 	<table class ="api">
@@ -94,8 +82,9 @@ thead{padding : 70px;}
 		</tr>
 	</table>
   </div>
- </form>
-    
+</form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 </body> 
 
  <script>

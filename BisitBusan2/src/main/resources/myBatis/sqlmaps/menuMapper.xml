@@ -12,10 +12,6 @@
        ORDER BY  MENU_SEQ  ASC
     </select>
     
-
-    
-
-    
     <select  id="MenuView"
        resultType="com.green.menus.vo.MenuVo" >
       SELECT  MENU_ID, MENU_NAME, MENU_SEQ

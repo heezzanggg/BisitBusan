@@ -26,13 +26,22 @@ public class SightServiceImpl implements SightService {
 		return sightList;
 	}
 	
-	@Override
-	public List<SightVo> getSightList2() {
-		
-		List<SightVo> sightList2 = sightDao.getSightList2();
+//	@Override
+//	public List<SightVo> getSightList1() {
+//		List<SightVo> sightList1 = sightDao.getSightList1();
+//
+//		return sightList1;
+//	}
+//	
+//	@Override
+//	public List<SightVo> getSightList2() {
+//		
+//		List<SightVo> sightList2 = sightDao.getSightList2();
+//
+//		return sightList2;
+//	}
 
-		return sightList2;
-	}
+	
 
 	@Override
 	public List<SightVo> getSightView(String tloc_Lng) {
@@ -84,6 +93,8 @@ public class SightServiceImpl implements SightService {
 	public int getTotalCount(Criteria cri) throws Exception {
 		return sightDao.getTotalCount(cri);
 	}
+
+
 
 
 	

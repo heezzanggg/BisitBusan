@@ -240,16 +240,19 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView();
 		
 		//top 여행지 위한 명소리스트 조회		
-		List<SightVo> sightList = sightService.getSightList(); //1~3
-		List<SightVo> sightList2 = sightService.getSightList2(); //4~6
+//		List<SightVo> sightList1 = sightService.getSightList(); //1~3
+//		List<SightVo> sightList2 = sightService.getSightList2(); //4~6
+		List<SightVo> sightList = sightService.getSightList(); //1~6
 
 		//top 여행지 위한 이미지 조회		
 		List<ImageVo> imageList = imageService.getImageList();
 	
 		
 		mv.setViewName("main");
+//		mv.addObject("sightList1",sightList);
+//		mv.addObject("sightList2",sightList2);
 		mv.addObject("sightList",sightList);
-		mv.addObject("sightList2",sightList2);
+
 		mv.addObject("imageList",imageList);
 		return mv;	
 	}

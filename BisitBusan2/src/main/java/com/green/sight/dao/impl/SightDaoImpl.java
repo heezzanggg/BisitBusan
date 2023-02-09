@@ -19,20 +19,27 @@ public class SightDaoImpl implements SightDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@Override //main.jsp 인기여행지리스트(1~3)
+//	@Override //main.jsp 인기여행지리스트(1~3)
+//	public List<SightVo> getSightList1() {
+//		
+//		List<SightVo> sightList1 = sqlSession.selectList("Sight.SightList1");
+//		return sightList1;
+//	
+//	}
+//	@Override //main.jsp 인기여행지리스트 (3~6)
+//	public List<SightVo> getSightList2() {
+//		
+//		List<SightVo> sightList2 = sqlSession.selectList("Sight.SightList2");
+//	
+//		return sightList2;
+//		
+//	}
+	
+	@Override //main.jsp 인기여행지리스트(1~6)
 	public List<SightVo> getSightList() {
-		
 		List<SightVo> sightList = sqlSession.selectList("Sight.SightList");
+		
 		return sightList;
-	
-	}
-	@Override //main.jsp 인기여행지리스트 (3~6)
-	public List<SightVo> getSightList2() {
-		
-		List<SightVo> sightList2 = sqlSession.selectList("Sight.SightList2");
-	
-		return sightList2;
-		
 	}
 
 	@Override
@@ -88,10 +95,5 @@ public class SightDaoImpl implements SightDao {
 	public int getTotalCount(Criteria cri) {
 		return sqlSession.selectOne("Sight.gettotalcount",cri);
 	}
-
-
-
-	
-	
 	
 }
