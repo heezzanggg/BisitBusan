@@ -45,10 +45,13 @@ public class HomeController {
 	
 	@Autowired
 	private SightService sightService;
+	
 	@Autowired
 	private ImageService imageService;
+	
 	@Autowired
 	private FestivalService festivalService;
+	
 	@Autowired
 	private AllfsService allfsService;
 
@@ -262,23 +265,18 @@ public class HomeController {
 	
 	@RequestMapping("/service")
 	@ResponseBody
-	public  void  serviceData(String keyword, HttpServletResponse response) {
+	public  void  serviceData( HttpServletResponse response) {
 		try {
-			String  json = wapiService.search(keyword, 7, 1 );
+			String  json = wapiService.search(7, 1);
 			response.setContentType("application/json;charset=utf-8");
 			PrintWriter out  = response.getWriter();
 			out.print( json );
-			System.out.println(out);
+			System.out.println("json"+json);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
-
-
-	
 	@RequestMapping("/Randomdice")   //랜덤페이지 추천 
 	   public String Rand(int s_code) throws Exception {   
 		String obj = null;
@@ -295,11 +293,6 @@ public class HomeController {
 	     if(s_code == 10) { obj = "park/park03";	 return obj ;  }
 	     if(s_code == 11) { obj = "park/park01";	 return obj ;  }
 
-
-
-	      
-	      
-	      
 		return obj; 
 		}
 	
@@ -362,7 +355,6 @@ public class HomeController {
 		
 			System.out.println("페이징한 결과1"+listPage);
 			System.out.println("게시물 갯수"+getTotalCount);
-			
 			
 		
 			model.addAttribute("list",listPage);
@@ -429,19 +421,7 @@ public class HomeController {
 			model.addAttribute("vo", festivalvo);
 			return "infofes";
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		
 		//----------------------VisitBusan Redirect------------------------------------------------------------------------
